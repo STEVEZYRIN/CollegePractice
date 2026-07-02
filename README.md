@@ -77,4 +77,4 @@ X   X
   - Выборка с группировкой
   - Выборка из нескольких связанных таблиц (левое, правое соединение, пересечение)
 
-[Запросы.txt](CollegePractice/DataBase/Текст запросов.txt)
+- [Запросы.txt](CollegePractice/DataBase/Queries.txt)
