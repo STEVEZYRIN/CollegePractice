@@ -1,0 +1,54 @@
+-- Найти все розы с ценой меньше 1500
+SELECT 
+    f.FlowerName, 
+    f.SKU, 
+    f.Price, 
+    c.CategoryName
+FROM Flowers f
+JOIN Categories c ON f.CategoryId = c.CategoryId
+WHERE c.CategoryName = N'Розы' 
+  AND f.Price < 1500.00
+ORDER BY f.Price DESC;
+
+-- Повышение цены на 10 процентов на 8ое марта (Допустим что 1 и 2 это Id категорий "Розы" и "Тюльпаны")
+UPDATE Flowers
+SET Price = Price * 1.10
+WHERE CategoryId IN (1, 2);
+
+-- Удаление доставленных заказов
+DELETE FROM OrderDetails 
+WHERE OrderId IN (SELECT OrderId FROM Orders WHERE IsDelivered = 1);
+DELETE FROM Orders
+WHERE IsDelivered = 1;
+
+-- Средняя цена в каждой категории
+SELECT 
+    c.CategoryName,
+    AVG(f.Price) AS AvgPrice
+FROM Categories c
+JOIN Flowers f ON c.CategoryId = f.CategoryId
+GROUP BY c.CategoryName;
+
+-- Левое соединение
+-- Все категории, даже без цветов
+SELECT 
+    c.CategoryName,
+    f.FlowerName
+FROM Categories c
+LEFT JOIN Flowers f ON c.CategoryId = f.CategoryId;
+
+
+-- Правое соединение
+-- Все поставщики даже без цветов
+SELECT 
+    s.SupplierName,
+    f.FlowerName
+FROM Flowers f
+RIGHT JOIN Suppliers s ON f.SupplierId = s.SupplierId;
+
+
+-- Пересечение
+-- Находит id категорий, которые используются в таблице цветов 
+SELECT CategoryId FROM Categories
+INTERSECT
+SELECT CategoryId FROM Flowers;
