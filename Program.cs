@@ -1,8 +1,13 @@
 ﻿namespace CollegePractice;
 
+/// <summary>
+/// Точка входа в приложение, реализующая консольное меню для CRUD-операций.
+/// </summary>
 public class Program
 {
-
+    /// <summary>
+    /// Главный метод приложения.
+    /// </summary>
     public static void Main()
     {
         // Автоматически создаем базу данных и таблицы при первом запуске.
